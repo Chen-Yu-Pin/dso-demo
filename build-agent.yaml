@@ -36,9 +36,6 @@ spec:
     - name: kaniko
       image: gcr.io/kaniko-project/executor:debug
       imagePullPolicy: Always
-      env:
-        - name: container
-          value: kube
       command:
           - sleep
       args: 
@@ -57,9 +54,7 @@ spec:
       hostPath:
         path: /tmp/trivycache/
     - name: jenkins-docker-cfg
-      projected:
-        sources: 
-        - secret:
+        secret:
           secretName: regcred
           items:
             - key: .dockerconfigjson
