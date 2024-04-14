@@ -33,16 +33,7 @@ spec:
       command:
         - cat
       tty: true
-    - name: kaniko
-      image: gcr.io/kaniko-project/executor:debug
-      imagePullPolicy: Always
-      command:
-          - sleep
-      args: 
-        - 99d
-      volumeMounts: 
-        - name: jenkins-docker-cfg
-          mountPath: /kaniko/.docker
+    
   volumes:
     - name: m2
       hostPath:
@@ -53,9 +44,4 @@ spec:
     - name: trivycache
       hostPath:
         path: /tmp/trivycache/
-    - name: jenkins-docker-cfg
-      secret:
-        secretName: regcred
-        items:
-          - key: .dockerconfigjson
-            path: config.json
+    
