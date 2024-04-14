@@ -30,7 +30,7 @@ pipeline {
         stage('SCA') {
           steps {
             container('maven') {
-              catchError(buildResult: 'SUCCESS', StageResult: 'FAILURE') {
+              catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 sh 'mvn org.owasp:dependency-chwck-maven:check'
               }
             }
