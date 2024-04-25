@@ -81,7 +81,7 @@ pipeline {
         stage("Build with Kaniko") {
           steps {
               container('kaniko') {
-              sh '/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --destination=docker.io/neighborhooood/dso-demo'
+              sh '/kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --cache=true --force --destination=docker.io/neighborhooood/dso-demo'
             }
           }
         }
