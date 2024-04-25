@@ -92,14 +92,14 @@ pipeline {
         stage('Image Linting') {
           steps {
             container('docker-tools') {
-              sh 'dockle docker.io/neighborhooood/dsodemo'
+              sh 'dockle docker.io/neighborhooood/dsodemo:latest'
            }
          }
        }
         stage('Image Scan') {
           steps {
             container('docker-tools') {
-              sh 'trivy image neighborhooood/dsodemo'
+              sh 'trivy image neighborhooood/dsodemo:latest'
             }
           }
         }
