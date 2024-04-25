@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.2</version>
+		<version>2.4.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.demo</groupId>
@@ -47,9 +47,9 @@
 				<groupId>org.owasp</groupId>
 				<artifactId>dependency-check-maven</artifactId>
 				<version>6.1.1</version>
-				<!-- <configuration>
+				<configuration>
 					<failBuildOnCVSS>8</failBuildOnCVSS>
-				</configuration> -->
+				</configuration>
 				<executions>
 					<execution>
 						<goals>
