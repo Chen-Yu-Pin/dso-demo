@@ -85,8 +85,13 @@ pipeline {
         }
         stage("Build Image") {
           steps {
-            script {
-              dockerImage = docker.build registry + ":$BUILD_NUMBER"
+            container('docker-tools') {
+              script {
+                dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                docker.withRegistry('', registryCredential ) { 
+                  dockerImage.push()
+                }
+              }
             }
           }
         }
@@ -96,7 +101,7 @@ pipeline {
     stage('Deploy to Dev') {
       steps {
         // TODO
-        sh "echo done"
+        
       }
     }
   }
