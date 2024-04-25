@@ -1,4 +1,9 @@
 pipeline {
+  environment {
+    registry = "neighborhooood/dso-demo"
+    registryCredential = 'a5212170-90f3-44cc-baa5-c65b9d9c6814'
+    dockerImage = '' 
+  }
   agent {
     kubernetes {
       yamlFile 'build-agent.yaml'
@@ -75,6 +80,13 @@ pipeline {
           steps {
             container('maven') {
               sh 'mvn package -DskipTests'
+            }
+          }
+        }
+        stage("Build Image") {
+          steps {
+            script {
+              dockerImage = docker.build registry + ":$BUILD_NUMBER"
             }
           }
         }
