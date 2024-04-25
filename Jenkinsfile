@@ -123,8 +123,8 @@ pipeline {
         }
         stage('DAST') {
           steps {
-            container('docker-tools') {
-              sh 'docker run -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t $DEV_URL || exit 0 '
+            container('zap') {
+              sh 'zap-baseline.py -t  $DEV_URL || exit 0 '
             }
           }
         }
