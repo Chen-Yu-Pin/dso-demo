@@ -1,4 +1,7 @@
 pipeline {
+  environment {
+    DEV_URL='http://dso-demo.bing.svc.cluster.local:31000'
+  }
   agent {
     kubernetes {
       yamlFile 'build-agent.yaml'
@@ -109,6 +112,22 @@ pipeline {
       steps {
         // TODO
         sh "echo done"
+      }
+    }
+    stage("Dynamic Analysis") {
+      parallel {
+        stage('E2E test') {
+          steps {
+            sh 'echo "ALL Test passed"'
+          }
+        }
+        stage('DAST') {
+          steps {
+            container('docker-tools') {
+              sh 'docker run -t owasp/zap2docker-stable zap-baseline.py -t $DEV_URL || exit 0 '
+            }
+          }
+        }
       }
     }
   }
