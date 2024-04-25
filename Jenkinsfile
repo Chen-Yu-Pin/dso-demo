@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    DEV_URL='http://dso-demo.bing.svc.cluster.local:31000'
+    DEV_URL='http://192.168.18.8:31000'
   }
   agent {
     kubernetes {
