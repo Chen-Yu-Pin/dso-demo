@@ -45,7 +45,8 @@ spec:
           mountPath: /kaniko/.docker
     - name: zap
       image: ghcr.io/zaproxy/zaproxy:stable
-      command: cat
+      command: 
+        - cat
       tty: true
   volumes:
     - name: m2
