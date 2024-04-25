@@ -3,6 +3,7 @@ pipeline {
     registry = "neighborhooood/dso-demo"
     registryCredential = 'a5212170-90f3-44cc-baa5-c65b9d9c6814'
     dockerImage = '' 
+    dockerfile true
   }
   agent {
     kubernetes {
@@ -85,14 +86,12 @@ pipeline {
         }
         stage("Build Image") {
           steps {
-            container('docker-tools') {
               script {
                 dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 docker.withRegistry('', registryCredential ) { 
                   dockerImage.push()
                 }
               }
-            }
           }
         }
       }
